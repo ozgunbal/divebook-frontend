@@ -1,0 +1,22 @@
+.DiveDisplay {
+    text-align: center;
+    align-content: center;
+    display: flex;
+    justify-content: space-around;
+    width: 96%;
+    padding: 1%;
+    margin: 1%;
+    border: 0.4vh grey solid; 
+}
+
+.diveName {
+    flex-grow: 3;
+}
+
+.meterAndMinute {
+    flex-grow: 1;
+}
+
+.diveDate {
+    flex-grow: 1;
+}
