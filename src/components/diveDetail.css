@@ -1,0 +1,10 @@
+.DiveDetail {
+    width: 70%;
+    margin: 0 auto;
+    
+}
+
+.detailRow {
+    display: flex;
+    justify-content: space-around;
+}
