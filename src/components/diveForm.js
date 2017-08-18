@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import './diveDetail.css'
+//import './diveDetail.css'
 
-import Button from 'react-toolbox/lib/button/Button';
 import Input from 'react-toolbox/lib/input/Input';
 import DatePicker from 'react-toolbox/lib/date_picker/DatePicker';
 
-class DiveDetail extends Component {
+class DiveForm extends Component {
     state = {
         site: '',
         minute: '',
@@ -21,9 +20,8 @@ class DiveDetail extends Component {
     render() {
         return (
             <div className="DiveDetail">
-                <p>Enter details of your dive!</p>
                 <Input type='text' label='Name' name='name' value={this.state.site} onChange={this.handleChange.bind(this, 'site')} />
-                <Input type='number' label='Minute' value={this.state.minute} onChange={this.handleChange.bind(this, 'minute')} />
+                <Input type='number' label='Minutes' value={this.state.minute} onChange={this.handleChange.bind(this, 'minute')} />
                 <Input type='number' label='Depth' value={this.state.depth} onChange={this.handleChange.bind(this, 'depth')} />
                 <DatePicker
                     label='Date'
@@ -32,10 +30,9 @@ class DiveDetail extends Component {
                     sundayFirstDayOfWeek
                 />
                 <Input type='text' multiline label='Notes' value={this.state.notes} onChange={this.handleChange.bind(this, 'notes')} />
-                <Button icon='add' label='Add Dive' flat primary />
             </div>
         );
     }
 }
 
-export default DiveDetail;
+export default DiveForm;
