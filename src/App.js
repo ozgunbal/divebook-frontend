@@ -10,33 +10,32 @@ import DiveForm from './components/diveForm';
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = {active: false};
+    this.state = { active: false };
     this.handleToggle = this.handleToggle.bind(this);
+    this.addDive = this.addDive.bind(this);
   }
 
   handleToggle() {
     this.setState({ active: !this.state.active });
   }
 
-  actions = [
-    { label: "Add", onClick: this.handleToggle }
-  ];
-
+  addDive(data) {
+    // TODO: send data to diveService 
+  }
 
   render() {
     return (
       <div className="App">
         <h1>Divebook Application</h1>
-        <Button icon="add" label="New Dive" raised primary onClick = {this.handleToggle} />
+        <Button icon="add" label="New Dive" raised primary onClick={this.handleToggle} />
         <Dialog
-          actions = {this.actions}
-          active = {this.state.active}
-          onEscKeyDown = {this.handleToggle}
-          onOverlayClick = {this.handleToggle}
-          type = "normal"
-          title = 'Enter details of your dive!'
+          active={this.state.active}
+          onEscKeyDown={this.handleToggle}
+          onOverlayClick={this.handleToggle}
+          type="normal"
+          title='Enter details of your dive!'
         >
-          <DiveForm />
+          <DiveForm formHandler={this.addDive} toggle={this.handleToggle} />
         </Dialog>
         <DiveList />
       </div>
