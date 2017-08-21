@@ -6,7 +6,11 @@
     width: 96%;
     padding: 1%;
     margin: 1%;
-    border: 0.4vh grey solid; 
+    border: 0.4vh grey solid;
+    border-radius: 1.4vh;
+}
+.DiveDisplay:hover{
+    cursor: pointer;
 }
 
 .diveName {
