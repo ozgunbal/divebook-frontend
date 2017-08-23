@@ -13,16 +13,16 @@ function DiveDisplay(props) {
     return (
         <div>
             <div className="DiveDisplay" onClick={ () => {props.toggleDiveDetail(props.index)}}>
-                <span className="diveName" >Test Dive Name</span>
-                <span className="meterAndMinute">Test X m Y"</span>
-                <span className="diveDate">Test {new Date().toDateString()}</span>
+                <span className="diveName" >{props.diveInfo.site}</span>
+                <span className="meterAndMinute">{props.diveInfo.meter}m {props.diveInfo.minute}"</span>
+                <span className="diveDate">{props.diveInfo.date.toDateString()}</span>
             </div>
             {
                 props.active ?
                     <Card style={diveDetailStyle} onClick={ () => {props.toggleDiveDetail(props.index)}}>
-                        <CardTitle title='Test Dive Name' subtitle={`Test ${new Date().toDateString()}`} />
-                        <CardText>Maximum Depth: X m Minutes: Y" </CardText>
-                        <CardText>Test Notes</CardText>
+                        <CardTitle title={props.diveInfo.site} subtitle={props.diveInfo.date.toDateString()} />
+                        <CardText>Maximum Depth: {props.diveInfo.meter} m Minutes: {props.diveInfo.minute}" </CardText>
+                        <CardText>{props.diveInfo.notes}</CardText>
                         <CardActions>
                             <Button label='Edit Dive' />
                         </CardActions>

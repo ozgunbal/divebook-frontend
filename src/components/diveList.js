@@ -23,10 +23,10 @@ class DiveList extends Component {
     render() {
         return (
             <div className="DiveList">
-                {Array(10).fill(2).map((_, idx) => {
+                {this.props.divelist.map((dive, idx) => {
                     const isActive = this.state.activeDetailIndex === idx;
                     return (
-                        <DiveDisplay key={idx} index={idx} active={isActive} toggleDiveDetail={this.toggleDiveDetail} />
+                        <DiveDisplay diveInfo={dive} key={idx} index={idx} active={isActive} toggleDiveDetail={this.toggleDiveDetail} />
                     );
                 }) /* for testing*/}
             </div>

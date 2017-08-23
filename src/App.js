@@ -7,10 +7,14 @@ import Button from 'react-toolbox/lib/button/Button';
 import Dialog from 'react-toolbox/lib/dialog/Dialog';
 import DiveForm from './components/diveForm';
 
+// temporary diveService
+import fakeDiveService from './fakeDiveService/fakeDiveService'
+
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = { active: false };
+    const divelist = fakeDiveService.getDiveList()
+    this.state = { active: false, divelist: divelist};
     this.handleToggle = this.handleToggle.bind(this);
     this.addDive = this.addDive.bind(this);
   }
@@ -20,7 +24,8 @@ class App extends Component {
   }
 
   addDive(data) {
-    // TODO: send data to diveService 
+    // TODO: send data to diveService
+    fakeDiveService.addNewDive(data);
   }
 
   render() {
@@ -37,7 +42,7 @@ class App extends Component {
         >
           <DiveForm formHandler={this.addDive} toggle={this.handleToggle} />
         </Dialog>
-        <DiveList />
+        <DiveList divelist = {this.state.divelist}/>
       </div>
     );
   }
