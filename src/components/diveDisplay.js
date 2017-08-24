@@ -4,7 +4,13 @@ import { Card, CardTitle, CardActions, CardText } from 'react-toolbox/lib/card';
 import Button from 'react-toolbox/lib/button/Button';
 import './diveDisplay.css'
 
-function DiveDisplay(props) {
+const DiveDisplay = ({
+    index,
+    active,
+    diveInfo,
+    toggleDiveDetail,
+    editDive
+}) => {
     const diveDetailStyle = {
         width: '70%',
         margin: '0 auto'
@@ -12,22 +18,22 @@ function DiveDisplay(props) {
 
     return (
         <div>
-            <div className="DiveDisplay" onClick={ () => {props.toggleDiveDetail(props.index)}}>
-                <span className="diveName" >{props.diveInfo.site}</span>
-                <span className="meterAndMinute">{props.diveInfo.meter}m {props.diveInfo.minute}"</span>
-                <span className="diveDate">{props.diveInfo.date.toDateString()}</span>
+            <div className="DiveDisplay" onClick={ () => {toggleDiveDetail(index)}}>
+                <span className="diveName" >{diveInfo.site}</span>
+                <span className="meterAndMinute">{diveInfo.meter}m {diveInfo.minute}"</span>
+                <span className="diveDate">{diveInfo.date.toDateString()}</span>
             </div>
             {
-                props.active ?
-                    <Card style={diveDetailStyle} onClick={ () => {props.toggleDiveDetail(props.index)}}>
-                        <CardTitle title={props.diveInfo.site} subtitle={props.diveInfo.date.toDateString()} />
-                        <CardText>Maximum Depth: {props.diveInfo.meter} m Minutes: {props.diveInfo.minute}" </CardText>
-                        <CardText>{props.diveInfo.notes}</CardText>
+                active ?
+                    <Card style={diveDetailStyle} onClick={ () => {toggleDiveDetail(index)}}>
+                        <CardTitle title={diveInfo.site} subtitle={diveInfo.date.toDateString()} />
+                        <CardText>Maximum Depth: {diveInfo.meter} m Minutes: {diveInfo.minute}" </CardText>
+                        <CardText>{diveInfo.notes}</CardText>
                         <CardActions>
                             <Button label='Edit Dive' onClick = {() => 
                                 {
-                                    props.toggleDiveDetail(props.index);
-                                    props.editDive(props.index);
+                                    toggleDiveDetail(index);
+                                    editDive(index);
                                 }} />
                         </CardActions>
                     </Card>
