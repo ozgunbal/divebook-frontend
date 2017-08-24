@@ -26,7 +26,12 @@ class DiveList extends Component {
                 {this.props.divelist.map((dive, idx) => {
                     const isActive = this.state.activeDetailIndex === idx;
                     return (
-                        <DiveDisplay diveInfo={dive} key={idx} index={idx} active={isActive} toggleDiveDetail={this.toggleDiveDetail} />
+                        <DiveDisplay 
+                            diveInfo={dive} key={idx} 
+                            index={idx} active={isActive} 
+                            toggleDiveDetail={this.toggleDiveDetail} 
+                            editDive = {this.props.editDive}
+                        />
                     );
                 }) /* for testing*/}
             </div>

@@ -24,7 +24,11 @@ function DiveDisplay(props) {
                         <CardText>Maximum Depth: {props.diveInfo.meter} m Minutes: {props.diveInfo.minute}" </CardText>
                         <CardText>{props.diveInfo.notes}</CardText>
                         <CardActions>
-                            <Button label='Edit Dive' />
+                            <Button label='Edit Dive' onClick = {() => 
+                                {
+                                    props.toggleDiveDetail(props.index);
+                                    props.editDive(props.index);
+                                }} />
                         </CardActions>
                     </Card>
                     : null
