@@ -42,12 +42,8 @@ class App extends Component {
     dialogProps.active = !dialogProps.active;
     dialogProps.placeholder = dive;
     this.setState({ dialog: dialogProps });
-    console.log('editDive:');
-    console.log(dive);
   }
   changeDiveInfo(diveData){
-    console.log('changedDive:');
-    console.log(diveData);
     fakeDiveService.changeDiveInfo(diveData);
 
     const divelist = fakeDiveService.getDiveList();

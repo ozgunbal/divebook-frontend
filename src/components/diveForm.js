@@ -18,7 +18,7 @@ class DiveForm extends Component {
         }
     }
     state = {
-        id: (this.props.placeholder.id || this.props.placeholder.id === 0 ) || '',
+        id: this.props.placeholder.id === 0 ? 0 : (this.props.placeholder.id || '') ,
         site: this.props.placeholder.site || '',
         minute: this.props.placeholder.minute || '',
         meter: this.props.placeholder.meter || '',
@@ -38,8 +38,8 @@ class DiveForm extends Component {
         return (
             <div className="DiveForm">
                 <Input type='text' label='Name' name='name' value={this.state.site} onChange={this.handleChange.bind(this, 'site')} />
-                <Input type='number' label='Minutes' value={this.state.minute} onChange={this.handleChange.bind(this, 'minute')} />
                 <Input type='number' label='Meters' value={this.state.meter} onChange={this.handleChange.bind(this, 'meter')} />
+                <Input type='number' label='Minutes' value={this.state.minute} onChange={this.handleChange.bind(this, 'minute')} />
                 <DatePicker
                     label='Date'
                     onChange={this.handleChange.bind(this, 'date')}
