@@ -6,10 +6,11 @@ import './toolbox/theme.css';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import store from './configureStore';
 
 ReactDOM.render(
     <ThemeProvider theme={theme}>
-        <App />
+        <App store = {store}/>
     </ThemeProvider>,
     document.getElementById('root'));
 registerServiceWorker();

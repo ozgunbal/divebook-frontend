@@ -8,6 +8,8 @@ import Button from 'react-toolbox/lib/button/Button';
 // temporary diveService
 import fakeDiveService from './fakeDiveService/fakeDiveService'
 
+import { addDive } from './actions';
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -17,6 +19,8 @@ class App extends Component {
       placeholder: {}
     }
     this.state = { dialog: dialogProps, divelist: divelist};
+    this.store = props.store;
+    console.log(props.store.getState());
     this.handleToggle = this.handleToggle.bind(this);
     this.addDive = this.addDive.bind(this);
     this.editDive = this.editDive.bind(this);
@@ -59,12 +63,12 @@ class App extends Component {
         <Button icon="add" label="New Dive" raised primary onClick={this.handleToggle} />
         <CustomDialog
           active = {this.state.dialog.active}
-          addDive = {this.addDive}
+          addDive = {addDive}
           changeDive = {this.changeDiveInfo}
           handleToggle = {this.handleToggle}
           placeholder = {this.state.dialog.placeholder}
         />
-        <DiveList divelist = {this.state.divelist} editDive ={this.editDive}/>
+        <DiveList divelist = {this.store.getState().divelist} editDive ={this.editDive}/>
       </div>
     );
   }

@@ -6,9 +6,11 @@
   "dependencies": {
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-redux": "^5.0.6",
     "react-scripts": "1.0.11",
     "react-toolbox": "^2.0.0-beta.12",
-    "react-toolbox-themr": "^1.0.2"
+    "react-toolbox-themr": "^1.0.2",
+    "redux": "^3.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
