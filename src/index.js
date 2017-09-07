@@ -8,9 +8,15 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import store from './configureStore';
 
-ReactDOM.render(
-    <ThemeProvider theme={theme}>
-        <App store = {store}/>
-    </ThemeProvider>,
-    document.getElementById('root'));
+const render = () => {
+    ReactDOM.render(
+        <ThemeProvider theme={theme}>
+            <App store={store} />
+        </ThemeProvider>,
+        document.getElementById('root'));
+}
+
+store.subscribe(render);
+render();
+
 registerServiceWorker();

@@ -3,23 +3,20 @@ import React from 'react';
 import Dialog from 'react-toolbox/lib/dialog/Dialog';
 import DiveForm from './diveForm';
 
-const CustomDialog = ({
-  active,
-  placeholder,
-  changeDive,
-  addDive,
-  handleToggle
-}) => {
-    const formHandler = placeholder.site? changeDive : addDive;
+import { addDive, editDive, toggleDialog } from '../actions';
+import store from '../configureStore';
+
+const CustomDialog = () => {
+    const formHandler = store.getState().dialog.placeholder.site? editDive : addDive;
 
     return (
         <Dialog
-        active={active}
-        onEscKeyDown={handleToggle}
-        onOverlayClick={handleToggle}
+        active={store.getState().dialog.active}
+        onEscKeyDown={toggleDialog}
+        onOverlayClick={toggleDialog}
         type="normal"
       >
-        <DiveForm formHandler={formHandler} toggle={handleToggle} placeholder = {placeholder} />
+        <DiveForm formHandler={formHandler} toggle={toggleDialog} placeholder = {store.getState().dialog.placeholder} />
       </Dialog>
     );
 }

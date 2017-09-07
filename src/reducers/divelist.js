@@ -1,15 +1,15 @@
-const divelist = (state = [], action) => {
-    switch(action.type) {
+import fakeDiveService from '../fakeDiveService/fakeDiveService';
+
+const divelist = (state = fakeDiveService.getDiveList(), action) => {
+    switch (action.type) {
         case 'ADD_DIVE':
             return [...state, action.dive]
         case 'EDIT_DIVE':
-            const nextState = state;
-            state.forEach((dive,index) => {
-                if (dive.id === action.dive.id) {
-                    nextState[index] = dive;
-                } 
-            })
-            return nextState; 
+            return [
+                ...state.slice(0, action.dive.id),
+                action.dive,
+                ...state.slice(action.dive.id + 1)
+            ];
         default:
             return state
     }

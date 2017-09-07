@@ -29,8 +29,7 @@ class DiveList extends Component {
                         <DiveDisplay 
                             diveInfo={dive} key={idx} 
                             index={idx} active={isActive} 
-                            toggleDiveDetail={this.toggleDiveDetail} 
-                            editDive = {this.props.editDive}
+                            toggleDiveDetail={this.toggleDiveDetail}
                         />
                     );
                 }) /* for testing*/}
