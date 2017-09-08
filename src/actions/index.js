@@ -30,4 +30,12 @@ export const openEditDialog = (dive) => {
     store.dispatch({
         type: 'TOGGLE_DIALOG'
     });
-} 
+}
+
+export const toggleDiveDetail = (index) => {
+    console.log(index);
+    store.dispatch({
+        type: 'TOGGLE_DISPLAY',
+        index
+    })
+}

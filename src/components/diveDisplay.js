@@ -4,18 +4,18 @@ import { Card, CardTitle, CardActions, CardText } from 'react-toolbox/lib/card';
 import Button from 'react-toolbox/lib/button/Button';
 import './diveDisplay.css'
 
-import { openEditDialog } from '../actions';
+import { openEditDialog, toggleDiveDetail } from '../actions';
+import store from '../configureStore';
 
 const DiveDisplay = ({
     index,
-    active,
-    diveInfo,
-    toggleDiveDetail
+    diveInfo
 }) => {
     const diveDetailStyle = {
         width: '70%',
         margin: '0 auto'
     }
+    const isCardDisplayed = store.getState().diveDisplay === index;
 
     return (
         <div>
@@ -25,7 +25,7 @@ const DiveDisplay = ({
                 <span className="diveDate">{diveInfo.date.toDateString()}</span>
             </div>
             {
-                active ?
+                isCardDisplayed ?
                     <Card style={diveDetailStyle} onClick={ () => {toggleDiveDetail(index)}}>
                         <CardTitle title={diveInfo.site} subtitle={diveInfo.date.toDateString()} />
                         <CardText>Maximum Depth: {diveInfo.meter} m Minutes: {diveInfo.minute}" </CardText>
