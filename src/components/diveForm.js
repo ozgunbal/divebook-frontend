@@ -5,11 +5,14 @@ import Input from 'react-toolbox/lib/input/Input';
 import DatePicker from 'react-toolbox/lib/date_picker/DatePicker';
 import Button from 'react-toolbox/lib/button/Button';
 
+import { toggleDialog } from '../actions';
+import store from '../configureStore';
+
 class DiveForm extends Component {
     constructor(props) {
         super(props);
 
-        if (props.placeholder.site) {
+        if (this.state.site) {
             this.icon = <EditIcon />;
             this.label = "edit";
         } else {
@@ -17,17 +20,11 @@ class DiveForm extends Component {
             this.label = "add";
         }
     }
-    state = {
-        id: this.props.placeholder.id === 0 ? 0 : (this.props.placeholder.id || '') ,
-        site: this.props.placeholder.site || '',
-        minute: this.props.placeholder.minute || '',
-        meter: this.props.placeholder.meter || '',
-        date: this.props.placeholder.date || '',
-        notes: this.props.placeholder.notes || ''
-    }
+    state = store.getState().dialog.placeholder;
+
     sendDiveData() {
         this.props.formHandler(this.state);
-        this.props.toggle();
+        toggleDialog();
     }
 
     handleChange = (name, value) => {

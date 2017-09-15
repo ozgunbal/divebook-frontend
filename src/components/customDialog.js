@@ -16,7 +16,7 @@ const CustomDialog = () => {
         onOverlayClick={toggleDialog}
         type="normal"
       >
-        <DiveForm formHandler={formHandler} toggle={toggleDialog} placeholder = {store.getState().dialog.placeholder} />
+        <DiveForm formHandler={formHandler}/>
       </Dialog>
     );
 }

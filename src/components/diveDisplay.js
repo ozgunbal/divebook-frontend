@@ -8,8 +8,13 @@ import { openEditDialog, toggleDiveDetail } from '../actions';
 import store from '../configureStore';
 
 const DiveDisplay = ({
+    id,
     index,
-    diveInfo
+    site,
+    meter,
+    minute,
+    date,
+    notes
 }) => {
     const diveDetailStyle = {
         width: '70%',
@@ -19,23 +24,29 @@ const DiveDisplay = ({
 
     return (
         <div>
-            <div className="DiveDisplay" onClick={ () => {toggleDiveDetail(index)}}>
-                <span className="diveName" >{diveInfo.site}</span>
-                <span className="meterAndMinute">{diveInfo.meter}m {diveInfo.minute}"</span>
-                <span className="diveDate">{diveInfo.date.toDateString()}</span>
+            <div className="DiveDisplay" onClick={() => { toggleDiveDetail(index) }}>
+                <span className="diveName" >{site}</span>
+                <span className="meterAndMinute">{meter}m {minute}"</span>
+                <span className="diveDate">{date.toDateString()}</span>
             </div>
             {
                 isCardDisplayed ?
-                    <Card style={diveDetailStyle} onClick={ () => {toggleDiveDetail(index)}}>
-                        <CardTitle title={diveInfo.site} subtitle={diveInfo.date.toDateString()} />
-                        <CardText>Maximum Depth: {diveInfo.meter} m Minutes: {diveInfo.minute}" </CardText>
-                        <CardText>{diveInfo.notes}</CardText>
+                    <Card style={diveDetailStyle} onClick={() => { toggleDiveDetail(index) }}>
+                        <CardTitle title={site} subtitle={date.toDateString()} />
+                        <CardText>Maximum Depth: {meter} m Minutes: {minute}" </CardText>
+                        <CardText>{notes}</CardText>
                         <CardActions>
-                            <Button label='Edit Dive' onClick = {() => 
-                                {
-                                    toggleDiveDetail(index);
-                                    openEditDialog(diveInfo);
-                                }} />
+                            <Button label='Edit Dive' onClick={() => {
+                                toggleDiveDetail(index);
+                                openEditDialog({
+                                    id,
+                                    site,
+                                    meter,
+                                    minute,
+                                    date,
+                                    notes
+                                });
+                            }} />
                         </CardActions>
                     </Card>
                     : null

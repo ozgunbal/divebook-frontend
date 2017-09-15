@@ -10,7 +10,8 @@ const DiveList = () => {
         <div className="DiveList">
             {divelist.map((dive, idx) => (
                 <DiveDisplay
-                    diveInfo={dive} key={idx}
+                    key={idx}
+                    {...dive}
                     index={idx}
                 />
             )
