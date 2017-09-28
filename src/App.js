@@ -5,13 +5,13 @@ import DiveList from './components/diveList';
 import CustomDialog from './components/customDialog';
 import Button from 'react-toolbox/lib/button/Button';
 
-import { toggleDialog } from './actions';
+import { openAddForm } from './actions';
 
 const App = () =>
   (
     <div className="App">
       <h1>Divebook Application</h1>
-      <Button icon="add" label="New Dive" raised primary onClick={toggleDialog} />
+      <Button icon="add" label="New Dive" raised primary onClick={openAddForm} />
       <CustomDialog />
       <DiveList />
     </div>
