@@ -9,12 +9,15 @@ const active = (state = false, action) => {
     }
 }
 
-const placeholder = (state = {}, action) => {
+const formType = (state = null, action) => {
     switch (action.type) {
         case 'EDIT_DIVE':
-            return {};
-        case 'OPEN_EDIT_DIALOG':
-            return Object.assign({}, action.dive);
+        case 'ADD_DIVE':
+            return null;
+        case 'OPEN_EDIT_FORM':
+            return 'edit';
+        case 'OPEN_ADD_FORM':
+            return 'add';
         default:
             return state
     }
@@ -22,7 +25,7 @@ const placeholder = (state = {}, action) => {
 
 const dialog = combineReducers({
     active,
-    placeholder
+    formType
 });
 
 export default dialog;

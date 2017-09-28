@@ -8,8 +8,6 @@ export const addDive = (dive) => {
 }
 
 export const editDive = (dive) => {
-    console.log('edit Dive:');
-    console.log(dive);
     store.dispatch({
         type: 'EDIT_DIVE',
         dive
@@ -22,18 +20,22 @@ export const toggleDialog = () => {
     })
 }
 
-export const openEditDialog = (dive) => {
+export const openAddForm = () => {
     store.dispatch({
-        type: 'OPEN_EDIT_DIALOG',
+        type: 'OPEN_ADD_FORM',
+    });
+    toggleDialog()
+}
+
+export const openEditForm = (dive) => {
+    store.dispatch({
+        type: 'OPEN_EDIT_FORM',
         dive
     });
-    store.dispatch({
-        type: 'TOGGLE_DIALOG'
-    });
+    toggleDialog();
 }
 
 export const toggleDiveDetail = (index) => {
-    console.log(index);
     store.dispatch({
         type: 'TOGGLE_DISPLAY',
         index

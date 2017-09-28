@@ -4,7 +4,7 @@ import { Card, CardTitle, CardActions, CardText } from 'react-toolbox/lib/card';
 import Button from 'react-toolbox/lib/button/Button';
 import './diveDisplay.css'
 
-import { openEditDialog, toggleDiveDetail } from '../actions';
+import { openEditForm, toggleDiveDetail } from '../actions';
 import store from '../configureStore';
 
 const DiveDisplay = ({
@@ -38,7 +38,7 @@ const DiveDisplay = ({
                         <CardActions>
                             <Button label='Edit Dive' onClick={() => {
                                 toggleDiveDetail(index);
-                                openEditDialog({
+                                openEditForm({
                                     id,
                                     site,
                                     meter,
