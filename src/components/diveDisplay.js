@@ -1,30 +1,31 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import { Card, CardTitle, CardActions, CardText } from 'react-toolbox/lib/card';
 import Button from 'react-toolbox/lib/button/Button';
 import './diveDisplay.css'
 
-import { openEditForm, toggleDiveDetail } from '../actions';
-import store from '../configureStore';
+import { toggleDialog, openEditForm, toggleDiveDetail } from '../actions';
 
-const DiveDisplay = ({
+let DiveDisplay = ({
     id,
     index,
     site,
     meter,
     minute,
     date,
-    notes
+    notes,
+    isCardDisplayed,
+    dispatch
 }) => {
     const diveDetailStyle = {
         width: '70%',
         margin: '0 auto'
     }
-    const isCardDisplayed = store.getState().diveDisplay === index;
 
     return (
         <div>
-            <div className="DiveDisplay" onClick={() => { toggleDiveDetail(index) }}>
+            <div className="DiveDisplay" onClick={() => { dispatch(toggleDiveDetail(index)) }}>
                 <span className="diveName" >{site}</span>
                 <span className="meterAndMinute">{meter}m {minute}"</span>
                 <span className="diveDate">{date.toDateString()}</span>
@@ -37,15 +38,16 @@ const DiveDisplay = ({
                         <CardText>{notes}</CardText>
                         <CardActions>
                             <Button label='Edit Dive' onClick={() => {
-                                toggleDiveDetail(index);
-                                openEditForm({
+                                //dispatch(toggleDiveDetail(index));
+                                dispatch(openEditForm({
                                     id,
                                     site,
                                     meter,
                                     minute,
                                     date,
                                     notes
-                                });
+                                }));
+                                dispatch(toggleDialog())
                             }} />
                         </CardActions>
                     </Card>
@@ -54,5 +56,13 @@ const DiveDisplay = ({
         </div>
     );
 }
+
+const mapStateToProps = (state, ownProps) => ({
+    isCardDisplayed: state.diveDisplay === ownProps.index
+})
+
+DiveDisplay = connect(
+    mapStateToProps
+)(DiveDisplay);
 
 export default DiveDisplay;

@@ -1,42 +1,40 @@
-import store from '../configureStore';
-
-export const addDive = (dive) => {
-    store.dispatch({
+export const addDive = (dive) => (dispatch) => {
+    dispatch({
         type: 'ADD_DIVE',
         dive
     });
 }
 
-export const editDive = (dive) => {
-    store.dispatch({
+export const editDive = (dive) => (dispatch) => {
+    dispatch({
         type: 'EDIT_DIVE',
         dive
     });
 }
 
-export const toggleDialog = () => {
-    store.dispatch({
+export const toggleDialog = () => (dispatch) => {
+    dispatch({
         type: 'TOGGLE_DIALOG'
     })
-}
+};
 
-export const openAddForm = () => {
-    store.dispatch({
+export const openAddForm = () => (dispatch) => {
+    dispatch({
         type: 'OPEN_ADD_FORM',
     });
-    toggleDialog()
 }
 
-export const openEditForm = (dive) => {
-    store.dispatch({
+
+export const openEditForm = (dive) => (dispatch) => {
+    dispatch({
         type: 'OPEN_EDIT_FORM',
         dive
     });
     toggleDialog();
 }
 
-export const toggleDiveDetail = (index) => {
-    store.dispatch({
+export const toggleDiveDetail = (index) => (dispatch) => {
+    dispatch({
         type: 'TOGGLE_DISPLAY',
         index
     })

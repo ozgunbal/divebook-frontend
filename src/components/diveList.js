@@ -1,23 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './diveList.css'
 
 import DiveDisplay from './diveDisplay';
-import store from '../configureStore';
 
-const DiveList = () => {
-    const divelist = store.getState().divelist;
-    return (
-        <div className="DiveList">
-            {divelist.map((dive, idx) => (
-                <DiveDisplay
-                    key={idx}
-                    {...dive}
-                    index={idx}
-                />
-            )
-            )}
-        </div>
-    );
-}
+let DiveList = ({ divelist }) => (
+    <div className="DiveList">
+        {divelist.map((dive, idx) => (
+            <DiveDisplay
+                key={idx}
+                {...dive}
+                index={idx}
+            />
+        )
+        )}
+    </div>
+);
+
+const mapStateToProps = (state) => ({
+    divelist: state.divelist
+})
+
+DiveList = connect(
+    mapStateToProps
+)(DiveList);
 
 export default DiveList;

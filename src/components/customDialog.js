@@ -1,20 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import Dialog from 'react-toolbox/lib/dialog/Dialog';
 import DiveForm from './diveForm';
 
 import { toggleDialog } from '../actions';
-import store from '../configureStore';
 
-const CustomDialog = () => (
+let CustomDialog = ({ dispatch, active }) => (
     <Dialog
-        active={store.getState().dialog.active}
-        onEscKeyDown={toggleDialog}
-        onOverlayClick={toggleDialog}
+        active={active}
+        onEscKeyDown={() => { dispatch(toggleDialog())}}
+        onOverlayClick={() => { dispatch(toggleDialog())}}
         type="normal"
     >
         <DiveForm />
     </Dialog>
 );
+
+const mapStateToProps = (state) => ({
+    active: state.dialog.active
+})
+
+CustomDialog = connect(
+    mapStateToProps
+)(CustomDialog);
 
 export default CustomDialog;

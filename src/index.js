@@ -1,22 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import ThemeProvider from 'react-toolbox/lib/ThemeProvider';
-import theme from './toolbox/theme.js';
-import './toolbox/theme.css';
+import { render } from 'react-dom';
+
 import './index.css';
-import App from './App';
+
 import registerServiceWorker from './registerServiceWorker';
-import store from './configureStore';
+import configureStore from './configureStore';
 
-const render = () => {
-    ReactDOM.render(
-        <ThemeProvider theme={theme}>
-            <App store={store} />
-        </ThemeProvider>,
-        document.getElementById('root'));
-}
+import Root from './components/root';
 
-store.subscribe(render);
-render();
+const store = configureStore();
+render (
+    <Root store = {store}/>,
+    document.getElementById('root')
+)
 
 registerServiceWorker();

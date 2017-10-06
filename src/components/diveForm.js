@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Input from 'react-toolbox/lib/input/Input';
 import DatePicker from 'react-toolbox/lib/date_picker/DatePicker';
@@ -7,16 +8,16 @@ import EditIcon from './editIcon';
 
 import { getDiveToEdit } from '../reducers';
 import { addDive, editDive, toggleDialog } from '../actions';
-import store from '../configureStore';
 
 class DiveForm extends Component {
     constructor(props) {
         super(props);
-        this.formType = store.getState().dialog.formType;
+        this.formType = props.formType;
 
         if (this.formType === "add") {
-            this.formHandler = addDive;
+            this.formHandler = (dive) => props.dispatch(addDive(dive));
             this.state = {
+                id: props.addId,
                 site: '',
                 meter: '',
                 minute: '',
@@ -24,8 +25,8 @@ class DiveForm extends Component {
                 notes: ''
             };
         } else if (this.formType === "edit") {
-            this.formHandler = editDive;
-            this.state = getDiveToEdit(store.getState())[0];
+            this.formHandler = (dive) => props.dispatch(editDive(dive));
+            this.state = props.diveToEdit;
         }
 
         this.sendDiveData = this.sendDiveData.bind(this);
@@ -35,7 +36,7 @@ class DiveForm extends Component {
 
     sendDiveData() {
         this.formHandler(this.state);
-        toggleDialog();
+        this.props.dispatch(toggleDialog());
     }
 
     handleChange = (evt) => {
@@ -71,4 +72,13 @@ class DiveForm extends Component {
     }
 }
 
+const mapStateToProps = (state, ownProps) => ({
+    formType: state.dialog.formType,
+    diveToEdit: getDiveToEdit(state),
+    addId: state.divelist.length
+});
+
+DiveForm = connect(
+    mapStateToProps
+)(DiveForm);
 export default DiveForm;
