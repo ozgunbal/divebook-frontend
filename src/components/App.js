@@ -8,7 +8,7 @@ import Button from 'react-toolbox/lib/button/Button';
 
 import { openAddForm, toggleDialog } from '../actions';
 
-let App = ({ onAddClick }) =>
+const App = ({ onAddClick }) =>
   (
     <div className="App">
       <h1>Divebook Application</h1>
@@ -19,11 +19,13 @@ let App = ({ onAddClick }) =>
   );
 
 const mapDispatchToProps = (dispatch) => ({
-  onAddClick() {
+  onAddClick: () => {
     dispatch(openAddForm())
     dispatch(toggleDialog())
   }
 })
-App = connect(null,mapDispatchToProps)(App);
 
-export default App;
+export default connect(
+  null,
+  mapDispatchToProps
+)(App);

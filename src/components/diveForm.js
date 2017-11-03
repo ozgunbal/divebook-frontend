@@ -15,7 +15,7 @@ class DiveForm extends Component {
         this.formType = props.formType;
 
         if (this.formType === "add") {
-            this.formHandler = (dive) => props.dispatch(addDive(dive));
+            this.formHandler = props.addDive;
             this.state = {
                 id: props.addId,
                 site: '',
@@ -25,7 +25,7 @@ class DiveForm extends Component {
                 notes: ''
             };
         } else if (this.formType === "edit") {
-            this.formHandler = (dive) => props.dispatch(editDive(dive));
+            this.formHandler = props.editDive;
             this.state = props.diveToEdit;
         }
 
@@ -36,7 +36,7 @@ class DiveForm extends Component {
 
     sendDiveData() {
         this.formHandler(this.state);
-        this.props.dispatch(toggleDialog());
+        this.props.toggle();
     }
 
     handleChange = (evt) => {
@@ -78,7 +78,13 @@ const mapStateToProps = (state, ownProps) => ({
     addId: state.divelist.length
 });
 
-DiveForm = connect(
-    mapStateToProps
+const mapDispatchToProps = (dispatch) => ({
+    addDive: dive => dispatch(addDive(dive)),
+    editDive: dive => dispatch(editDive(dive)),
+    toggle: () => toggleDialog()
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
 )(DiveForm);
-export default DiveForm;
