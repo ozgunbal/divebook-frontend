@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+ - "node"
+after_success:
+ - git config --global user.name "ozgunbal"
+ - git config --global user.email "ozgunbal@gmail.com"
+ - git remote rm origin
+ - git remote add origin https://ozgunbal:${GH_TOKEN}@github.com/ozgunbal/divebook.git
+ - npm run deploy
