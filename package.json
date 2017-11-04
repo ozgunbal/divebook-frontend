@@ -2,8 +2,9 @@
   "name": "divebook",
   "version": "0.1.0",
   "private": true,
-  "homepage": "./",
+  "homepage": "http://ozgunbal.github.io/divebook",
   "dependencies": {
+    "gh-pages": "^1.0.0",
     "prop-types": "^15.6.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
@@ -20,6 +21,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "toolbox": "react-toolbox-themr",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   }
 }
