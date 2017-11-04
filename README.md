@@ -1,4 +1,4 @@
-https://travis-ci.org/ozgunbal/divebook.svg?branch=master
+![logo](https://travis-ci.org/ozgunbal/divebook.svg?branch=master)
 
 Divebook application generated with create-react-app cli.
 
