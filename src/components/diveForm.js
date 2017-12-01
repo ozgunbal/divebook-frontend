@@ -81,7 +81,7 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch) => ({
     addDive: dive => dispatch(addDive(dive)),
     editDive: dive => dispatch(editDive(dive)),
-    toggle: () => toggleDialog()
+    toggle: () => dispatch(toggleDialog()),
 });
 
 export default connect(

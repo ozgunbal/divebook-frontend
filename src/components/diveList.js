@@ -9,7 +9,7 @@ let DiveList = ({ divelist }) => (
         {divelist.map((dive, idx) => (
             <DiveDisplay
                 key={idx}
-                {...dive}
+                dive = {dive}
                 index={idx}
             />
         )
