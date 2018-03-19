@@ -39,3 +39,23 @@ export const toggleDiveDetail = (index) => (dispatch) => {
         index
     })
 }
+
+export const receiveDives = (dives) => (dispatch) => {
+    dispatch({
+        type: 'RECEIVE_DIVES',
+        dives,
+    })
+}
+
+export const setLogout = () => (dispatch) => {
+    console.log("set logout");
+    dispatch({
+        type: 'LOGGED_OUT'
+    })
+}
+
+export const setLogin = () => (dispatch) => {
+    dispatch({
+        type: 'LOGGED_IN'
+    })
+}

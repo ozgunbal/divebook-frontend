@@ -6,11 +6,11 @@ import DiveForm from './diveForm';
 
 import { toggleDialog } from '../actions';
 
-const CustomDialog = ({ active, toggle }) => (
+const CustomDialog = ({ active, toggleDialog }) => (
     <Dialog
         active={active}
-        onEscKeyDown={toggle}
-        onOverlayClick={toggle}
+        onEscKeyDown={toggleDialog}
+        onOverlayClick={toggleDialog}
         type="normal"
     >
         <DiveForm />
@@ -21,11 +21,7 @@ const mapStateToProps = (state) => ({
     active: state.dialog.active
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    toggle: () => dispatch(toggleDialog())
-});
-
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
+    { toggleDialog },
 )(CustomDialog);

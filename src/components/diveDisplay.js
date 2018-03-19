@@ -6,7 +6,7 @@ import './diveDisplay.css'
 
 import { toggleDiveDetail } from '../actions';
 
-let DiveDisplay = ({
+const DiveDisplay = ({
     index,
     dive,
     isCardDisplayed,
@@ -17,7 +17,7 @@ let DiveDisplay = ({
             <div className="DiveDisplay" onClick={() => { toggleDiveDetail(index) }}>
                 <span className="diveName" >{dive.site}</span>
                 <span className="meterAndMinute">{dive.meter}m {dive.minute}"</span>
-                <span className="diveDate">{dive.date.toDateString()}</span>
+                <span className="diveDate">{new Date(dive.date).toLocaleDateString()}</span>
             </div>
             {
                 isCardDisplayed ? <DiveCard dive={dive} index={index} /> : null
@@ -30,13 +30,7 @@ const mapStateToProps = (state, ownProps) => ({
     isCardDisplayed: state.diveDisplay === ownProps.index
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    toggleDiveDetail: (index) => dispatch(toggleDiveDetail(index))
-})
-
-DiveDisplay = connect(
+export default connect(
     mapStateToProps,
-    mapDispatchToProps,
+    { toggleDiveDetail },
 )(DiveDisplay);
-
-export default DiveDisplay;

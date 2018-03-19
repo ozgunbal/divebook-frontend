@@ -9,11 +9,13 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
-    "react-scripts": "1.0.11",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "^1.1.1",
     "react-toolbox": "^2.0.0-beta.12",
     "react-toolbox-themr": "^1.0.2",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
+    "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
@@ -24,5 +26,13 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
+  },
+  "proxy": {
+    "^/dives": {
+      "target": "http://localhost:3001/"
+    },
+    "^/auth": {
+      "target": "http://localhost:3001/"
+    }
   }
 }

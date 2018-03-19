@@ -5,22 +5,23 @@ import Button from 'react-toolbox/lib/button/Button';
 
 import { toggleDialog, openEditForm, toggleDiveDetail } from '../actions';
 
-let DiveCard = ({ 
+const DiveCard = ({ 
     dive,
     index,
     toggleDetail,
-    openForm,
-    toggle,
+    openEditForm,
+    toggleDialog,
 }) => (
-    <Card style={diveDetailStyle} onClick={() => { toggleDetail(index) }}>
-        <CardTitle title={dive.site} subtitle={dive.date.toDateString()} />
+    <Card style={diveDetailStyle} onClick={() => { toggleDiveDetail(index) }}>
+        <CardTitle title={dive.site} subtitle={new Date(dive.date).toLocaleDateString()} />
         <CardText>Maximum Depth: {dive.meter} m Minutes: {dive.minute}" </CardText>
         <CardText>{dive.notes}</CardText>
         <CardActions>
             <Button label='Edit Dive' onClick={(evt) => {
+                console.log("Edit dive");
                 evt.stopPropagation();
-                openForm(dive);
-                toggle()
+                openEditForm(dive);
+                toggleDialog()
             }} />
         </CardActions>
     </Card>
@@ -30,18 +31,14 @@ const mapStateToProps = (state, ownProps) => ({
     isCardDisplayed: state.diveDisplay === ownProps.index
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    toggleDetail: index => dispatch(toggleDiveDetail(index)),
-    toggle: () => dispatch(toggleDialog()),
-    openForm: dive => dispatch(openEditForm(dive)),
-})
-
-DiveCard = connect(
+export default connect(
     mapStateToProps,
-    mapDispatchToProps
+    {
+        toggleDiveDetail,
+        toggleDialog,
+        openEditForm,
+    }
 )(DiveCard);
-
-export default DiveCard;
 
 const diveDetailStyle = {
     width: '70%',

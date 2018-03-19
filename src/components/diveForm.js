@@ -36,7 +36,7 @@ class DiveForm extends Component {
 
     sendDiveData() {
         this.formHandler(this.state);
-        this.props.toggle();
+        this.props.toggleDialog();
     }
 
     handleChange = (evt) => {
@@ -78,13 +78,11 @@ const mapStateToProps = (state, ownProps) => ({
     addId: state.divelist.length
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    addDive: dive => dispatch(addDive(dive)),
-    editDive: dive => dispatch(editDive(dive)),
-    toggle: () => dispatch(toggleDialog()),
-});
-
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
+    {
+        addDive,
+        editDive,
+        toggleDialog,
+    }
 )(DiveForm);
