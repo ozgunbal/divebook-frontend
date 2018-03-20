@@ -1,6 +1,6 @@
 const isCookieExist = /userid=/.test(document.cookie);
 
-const isLoggedIn = (state = false, action) => {
+const isLoggedIn = (state = isCookieExist, action) => {
     switch (action.type) {
         case 'LOGGED_IN':
             return true;

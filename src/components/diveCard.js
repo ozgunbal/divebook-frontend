@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { Card, CardTitle, CardActions, CardText } from 'react-toolbox/lib/card';
 import Button from 'react-toolbox/lib/button/Button';
 
-import { toggleDialog, openEditForm, toggleDiveDetail } from '../actions';
+import { toggleDialog, openEditForm, toggleDiveDetail, deleteDive } from '../actions';
+import { removeDive } from '../api';
 
 const DiveCard = ({ 
     dive,
@@ -11,17 +12,22 @@ const DiveCard = ({
     toggleDetail,
     openEditForm,
     toggleDialog,
+    deleteDive,
 }) => (
     <Card style={diveDetailStyle} onClick={() => { toggleDiveDetail(index) }}>
         <CardTitle title={dive.site} subtitle={new Date(dive.date).toLocaleDateString()} />
         <CardText>Maximum Depth: {dive.meter} m Minutes: {dive.minute}" </CardText>
-        <CardText>{dive.notes}</CardText>
-        <CardActions>
+        <CardText>{dive.note}</CardText>
+        <CardActions style={{justifyContent: "space-between"}}>
             <Button label='Edit Dive' onClick={(evt) => {
-                console.log("Edit dive");
                 evt.stopPropagation();
                 openEditForm(dive);
                 toggleDialog()
+            }} />
+            <Button label='Delete Dive' onClick={(evt) => {
+                evt.stopPropagation();
+                removeDive(dive.id)
+                    .then(() => deleteDive(dive))
             }} />
         </CardActions>
     </Card>
@@ -37,6 +43,7 @@ export default connect(
         toggleDiveDetail,
         toggleDialog,
         openEditForm,
+        deleteDive,
     }
 )(DiveCard);
 

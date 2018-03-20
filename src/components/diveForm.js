@@ -8,6 +8,7 @@ import EditIcon from './editIcon';
 
 import { getDiveToEdit } from '../reducers';
 import { addDive, editDive, toggleDialog } from '../actions';
+import { sendDive, updateDive } from '../api';
 
 class DiveForm extends Component {
     constructor(props) {
@@ -15,17 +16,21 @@ class DiveForm extends Component {
         this.formType = props.formType;
 
         if (this.formType === "add") {
-            this.formHandler = props.addDive;
+            this.formHandler = (dive) => {
+                sendDive(dive).then(props.addDive);
+            }
             this.state = {
                 id: props.addId,
                 site: '',
                 meter: '',
                 minute: '',
                 date: '',
-                notes: ''
+                note: ''
             };
         } else if (this.formType === "edit") {
-            this.formHandler = props.editDive;
+            this.formHandler = (dive) => {
+                updateDive(dive).then(props.editDive);
+            }
             this.state = props.diveToEdit;
         }
 
@@ -47,19 +52,20 @@ class DiveForm extends Component {
     }
 
     render() {
+        const { site, meter, minute, date, note } = this.state;
         return (
             <div className="DiveForm" style={{ textAlign: 'center', justifyContent: 'center' }} onChange={this.handleChange.bind(this)}>
-                <Input type='text' label='Site' name='site' value={this.state.site} />
-                <Input type='number' label='Meters' name='meter' value={this.state.meter} />
-                <Input type='number' label='Minutes' name='minute' value={this.state.minute} />
+                <Input type='text' label='Site' name='site' value={site} />
+                <Input type='number' label='Meters' name='meter' value={meter} />
+                <Input type='number' label='Minutes' name='minute' value={minute} />
                 <DatePicker
                     label='Date'
                     name='date'
-                    value={this.state.date}
+                    value={date ? new Date(date) : ''}
                     onChange={this.handleDatePick}
                     sundayFirstDayOfWeek
                 />
-                <Input type='text' multiline label='Notes' name="notes" value={this.state.notes} />
+                <Input type='text' multiline label='Notes' name="note" value={note} />
                 {
                     this.formType === 'add' ? <Button onClick={this.sendDiveData} icon="add" label="add" primary /> : ''
                 }

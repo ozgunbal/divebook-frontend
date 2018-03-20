@@ -12,6 +12,13 @@ export const editDive = (dive) => (dispatch) => {
     });
 }
 
+export const deleteDive = (dive) => (dispatch) => {
+    dispatch({
+        type: 'DELETE_DIVE',
+        dive
+    });
+}
+
 export const toggleDialog = () => (dispatch) => {
     dispatch({
         type: 'TOGGLE_DIALOG'

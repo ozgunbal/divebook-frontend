@@ -14,6 +14,6 @@ const dives = combineReducers({
 export default dives;
 
 export const getDiveToEdit = (state) => {
-    const id = state.diveDisplay;
-    return state.divelist.filter(dive => dive.id === id)[0];
+    const idx = state.diveDisplay;
+    return state.divelist[idx];
 }
