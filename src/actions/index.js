@@ -55,14 +55,14 @@ export const receiveDives = (dives) => (dispatch) => {
 }
 
 export const setLogout = () => (dispatch) => {
-    console.log("set logout");
     dispatch({
         type: 'LOGGED_OUT'
     })
 }
 
-export const setLogin = () => (dispatch) => {
+export const setLogin = ({token}) => (dispatch) => {
     dispatch({
-        type: 'LOGGED_IN'
+        type: 'LOGGED_IN',
+        token,
     })
 }

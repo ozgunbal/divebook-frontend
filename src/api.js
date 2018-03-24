@@ -1,17 +1,18 @@
-const options = {
+const getToken = () => localStorage.getItem('token') || "";
+
+const getHeaders = () => ({
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Credentials': true
-    },
-    credentials: "include",
-};
+        'Authorization': `JWT ${getToken()}`,
+    }
+})
 
-export const fetchDives = () => fetch("/dives", options).then(res => res.json());
+export const fetchDives = () => fetch("/dives", getHeaders()).then(res => res.json());
 
 export const signUp = (email, password) => fetch("/auth/signup", {
     method: "POST",
-    ...options,
+    ...getHeaders(),
     body: JSON.stringify({ email, password }),
 }).then(response => {
     if (response.status === 401) {
@@ -22,7 +23,7 @@ export const signUp = (email, password) => fetch("/auth/signup", {
 
 export const logIn = (email, password) => fetch("/auth/login", {
     method: "POST",
-    ...options,
+    ...getHeaders(),
     body: JSON.stringify({ email, password }),
 }).then(response => {
     if (response.status === 401 || response.status === 400) {
@@ -31,23 +32,23 @@ export const logIn = (email, password) => fetch("/auth/login", {
     return response.json();
 });
 
-export const logout = (email, password) => fetch('/auth/logout', options);
+export const logout = (email, password) => fetch('/auth/logout', getHeaders());
 
 export const sendDive = (dive) => fetch('/dives', {
     method: 'POST',
-    ...options,
+    ...getHeaders(),
     body: JSON.stringify(dive)
 }).then(response => response.json());
 
 export const updateDive = (dive) => fetch(`/dives/${dive.id}`, {
     method: 'PUT',
-    ...options,
+    ...getHeaders(),
     body: JSON.stringify(dive)
 }).then(response => response.json())
 
 export const removeDive = (diveId) => fetch(`/dives/${diveId}`, {
     method: 'DELETE',
-    ...options,
+    ...getHeaders(),
 }).then(response => {
     if (response.status === 204) return;
     throw new Error('Dive cannot be deleted.');

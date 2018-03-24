@@ -28,7 +28,7 @@ class LoginForm extends Component {
 
         if (!emailError && !passwordError) {
             logIn(email, password)
-            .then(response => this.props.setLogin())
+            .then(response => this.props.setLogin(response))
             .catch(error => this.setState({errorMessage: error.message}));
         }
     }
