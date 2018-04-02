@@ -6,7 +6,7 @@
     width: 96%;
     padding: 1%;
     margin: 2%;
-    border: 0.4vh grey solid;
+    border: 0.4vh rgb(243, 238, 238) solid;
     border-radius: 1.4vh;
 }
 .DiveDisplay:hover{

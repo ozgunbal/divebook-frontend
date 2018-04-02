@@ -22,28 +22,22 @@ class LoginForm extends Component {
     }
     submit() {
         const { email, password } = this.state;
-        const emailError = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+(\.[A-Za-z]+)+$/.test(email) ? null : "E-mail is invalid";
-        const passwordError = password.length < 8 ? "Password should contain at least 8 character" : null;
-        this.setState({ emailError, passwordError });
-
-        if (!emailError && !passwordError) {
-            logIn(email, password)
+        logIn(email, password)
             .then(response => this.props.setLogin(response))
             .catch(error => this.setState({errorMessage: error.message}));
-        }
     }
     handleChange = (evt) => {
         this.setState({ [evt.target.name]: evt.target.value });
     }
     render() {
-        const { email, emailError, password, passwordError, errorMessage } = this.state;
+        const { email, password, errorMessage } = this.state;
         return (
             this.props.isLoggedIn ?
                 <Redirect to="/" /> :
                 <div className="LoginForm" style={{ textAlign: 'center', justifyContent: 'center' }} onChange={this.handleChange.bind(this)}>
                     <div style={{ display: !!errorMessage, color: 'red' }}><em>{errorMessage}</em></div>
-                    <Input type='text' label='E-mail' name='email' value={email} error={emailError} />
-                    <Input type='password' label='Password' name='password' value={password} error={passwordError} />
+                    <Input type='text' label='E-mail' name='email' value={email}/>
+                    <Input type='password' label='Password' name='password' value={password}/>
                     <Button onClick={this.submit} label="Log In" primary />
                 </div>
         );

@@ -6,3 +6,7 @@
   text-align: center;
   justify-content: center;
 }
+
+h1 {
+  text-shadow: 0.08em 0.06em black;
+}

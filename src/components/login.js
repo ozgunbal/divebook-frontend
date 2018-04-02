@@ -21,7 +21,7 @@ class Login extends Component {
         const toggleLogin = () => this.toggle("loginToggle");
         const toggleSignup = () => this.toggle("signupToggle");
         return (
-            <div style = {{textAlign: "center", justifyContent: "center"}}>
+            <div style = {{textAlign: "center", justifyContent: "center", marginTop: "35vh"}}>
                 <h1>Divebook Application</h1>
                 <div style={{ width: "20%", margin: "auto" }}>
                     <Button style={{ width: "100%", margin: "2%" }} label="Sign Up" raised primary onClick={toggleSignup} />

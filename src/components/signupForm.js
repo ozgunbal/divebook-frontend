@@ -19,7 +19,7 @@ class SignupForm extends Component {
     }
     submit() {
         const { email, password } = this.state;
-        const emailError = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+(\.[A-Za-z]+)+$/.test(email) ? null : "E-mail is invalid";
+        const emailError = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email) ? null : "E-mail is invalid";
         const passwordError = password.length < 8 ? "Password should contain at least 8 character" : null;
         this.setState({ emailError, passwordError });
 

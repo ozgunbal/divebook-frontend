@@ -15,7 +15,7 @@ const DiveCard = ({
     deleteDive,
 }) => (
     <Card style={diveDetailStyle} onClick={() => { toggleDiveDetail(index) }}>
-        <CardTitle title={dive.site} subtitle={new Date(dive.date).toLocaleDateString()} />
+        <CardTitle title={dive.site} subtitle={formatDate(new Date(dive.date))} />
         <CardText>Maximum Depth: {dive.meter} m Minutes: {dive.minute}" </CardText>
         <CardText>{dive.note}</CardText>
         <CardActions style={{justifyContent: "space-between"}}>
@@ -31,6 +31,10 @@ const DiveCard = ({
             }} />
         </CardActions>
     </Card>
+);
+
+const formatDate = (date) => (
+    `${date.getDate() < 10 ? '0' : ''}${date.getDate()}/${date.getMonth() + 1 < 10 ? '0' : ''}${date.getMonth() + 1}/${date.getFullYear()}`
 );
 
 const mapStateToProps = (state, ownProps) => ({
@@ -49,6 +53,10 @@ export default connect(
 
 const diveDetailStyle = {
     width: '70%',
-    margin: '0 auto'
+    margin: '0 auto',
+    color: "black",
+    backgroundColor: "rgb(137, 178, 238)",
+    boxShadow: "0.15em 0.15em black",
+    border: "0.1em solid black"
 };
 

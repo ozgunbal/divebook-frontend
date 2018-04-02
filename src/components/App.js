@@ -14,7 +14,9 @@ const App = ({ onAddClick, isLoggedIn, logOut }) =>
   (
     isLoggedIn ?
       <div className="App">
-        <Button style={{position:"absolute", right: "2%"}}label="Log Out" raised primary onClick={() => logOut()} />
+        <div style ={{ display: "flex", justifyContent: "flex-end" }}>
+          <Button style={{margin: "15px 15px 0"}} label="Log Out" raised primary onClick={() => logOut()} />
+        </div>
         <h1>Divebook Application</h1>
         <Button icon="add" label="New Dive" raised primary onClick={onAddClick} />
         <CustomDialog />
