@@ -4,13 +4,13 @@
   "private": true,
   "homepage": "http://ozgunbal.github.io/divebook",
   "dependencies": {
-    "gh-pages": "^1.0.0",
+    "gh-pages": "^2.0.0",
     "prop-types": "^15.6.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "^1.1.1",
+    "react-scripts": "^2.0.0",
     "react-toolbox": "^2.0.0-beta.12",
     "react-toolbox-themr": "^1.0.2",
     "redux": "^3.7.2",
@@ -27,12 +27,10 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "proxy": {
-    "^/dives": {
-      "target": "http://localhost:3001/"
-    },
-    "^/auth": {
-      "target": "http://localhost:3001/"
-    }
-  }
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
