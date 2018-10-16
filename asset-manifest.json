@@ -1,11 +1,15 @@
 {
-  "main.css": "/divebook-frontend/static/css/main.72d28ac2.chunk.css",
-  "main.js": "/divebook-frontend/static/js/main.dd7e53b2.chunk.js",
-  "main.js.map": "/divebook-frontend/static/js/main.dd7e53b2.chunk.js.map",
-  "static/css/1.114403b0.chunk.css": "/divebook-frontend/static/css/1.114403b0.chunk.css",
-  "static/js/1.354e4c6e.chunk.js": "/divebook-frontend/static/js/1.354e4c6e.chunk.js",
-  "static/js/1.354e4c6e.chunk.js.map": "/divebook-frontend/static/js/1.354e4c6e.chunk.js.map",
+  "main.css": "/divebook-frontend/static/css/main.c149a503.chunk.css",
+  "main.js": "/divebook-frontend/static/js/main.5e9f0961.chunk.js",
+  "main.js.map": "/divebook-frontend/static/js/main.5e9f0961.chunk.js.map",
+  "static/css/1.3f6c78a3.chunk.css": "/divebook-frontend/static/css/1.3f6c78a3.chunk.css",
+  "static/js/1.b00d6ebb.chunk.js": "/divebook-frontend/static/js/1.b00d6ebb.chunk.js",
+  "static/js/1.b00d6ebb.chunk.js.map": "/divebook-frontend/static/js/1.b00d6ebb.chunk.js.map",
   "runtime~main.js": "/divebook-frontend/static/js/runtime~main.790f05db.js",
   "runtime~main.js.map": "/divebook-frontend/static/js/runtime~main.790f05db.js.map",
-  "index.html": "/divebook-frontend/index.html"
+  "static/css/1.3f6c78a3.chunk.css.map": "/divebook-frontend/static/css/1.3f6c78a3.chunk.css.map",
+  "static/css/main.c149a503.chunk.css.map": "/divebook-frontend/static/css/main.c149a503.chunk.css.map",
+  "index.html": "/divebook-frontend/index.html",
+  "precache-manifest.7e8c433c83ab259d2b91081c53709a4b.js": "/divebook-frontend/precache-manifest.7e8c433c83ab259d2b91081c53709a4b.js",
+  "service-worker.js": "/divebook-frontend/service-worker.js"
 }
